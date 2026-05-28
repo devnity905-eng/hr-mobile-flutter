@@ -1,0 +1,40 @@
+name: Build Flutter iOS IPA
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # يسمح بتشغيل البناء يدوياً من موقع جيتهاب
+
+jobs:
+  build:
+    name: Build iOS IPA
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS IPA (Unsigned)
+        run: flutter build ipa --no-codesign
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-app-release
+          path: build/ios/ipa/*.ipa

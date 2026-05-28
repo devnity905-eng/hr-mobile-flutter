@@ -1,0 +1,30 @@
+name: hr_mobile_flutter
+description: A premium glassmorphic HR and Payroll mobile application for employees and HR managers.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  http: ^1.2.0
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+  geolocator: ^10.1.0
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+dependency_overrides:
+  geolocator_android: 4.6.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    # Adding placeholders for any assets if needed, but we will mostly use custom painters/gradients
+    # to render the premium UI directly in code to avoid missing file errors.
